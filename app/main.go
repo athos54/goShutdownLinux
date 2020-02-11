@@ -27,15 +27,15 @@ func main() {
 			cmd := exec.Command("shutdown", "-c")
 			err = cmd.Start()
 		} else {
-			cmd := exec.Command("shutdown", "-c")
+			cmd := exec.Command("shutdown", time)
 			err = cmd.Start()
 		}
 
 		if err != nil {
 			log.Fatal(err)
 		}
-
-		return c.String(http.StatusOK, "Hello, World!")
+		fmt.Println(fmt.Sprintf("Apagado en %v!", time))
+		return c.String(http.StatusOK, fmt.Sprintf("Apagado en %v!", time))
 	})
 
 	e.Logger.Fatal(e.Start(":1323"))
